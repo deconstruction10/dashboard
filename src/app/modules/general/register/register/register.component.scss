@@ -1,0 +1,40 @@
+.withError {
+  border: 1px solid red;
+}
+
+.box {
+  height: 5em;
+}
+
+.tab-content {
+  margin: -15px;
+}
+
+.social {
+  padding: 20px;
+}
+
+.signup-btn {
+  margin-bottom: 50px;
+}
+
+.redirect-login {
+  flex-basis: 100%;
+  flex-grow: 1;
+  box-shadow: rgb(0 0 0 / 11%) 0 - 1px;
+  text-align: center;
+  line-height: 1.7rem;
+}
+
+.nav-link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.nav {
+  float: right;
+}
+
+.form-check-label {
+  height: 10px;
+}

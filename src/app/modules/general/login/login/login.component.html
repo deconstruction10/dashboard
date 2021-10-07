@@ -1,0 +1,136 @@
+<div class="box shadow p-3 mb-5 bg-white rounded">
+  <h2 class="tab-content  font-weight-bold text-center">Hello!</h2>
+  <p class="message-signin lead">Sign into your account here.</p>
+</div>
+
+<div class="container">
+  <div class="row">
+    <h1 class="signIn-header lead display-3 p-3 mb-3">Sign In</h1>
+    <form (submit)="login()" [formGroup]="loginForm">
+      <div class="form-floating mb-3">
+        <input (keydown)="handleUserNameInput($event)"
+               #usernameInput
+               formControlName="username"
+               [ngClass]="{'withError': username?.errors}"
+               class="email-username-input form-control"
+               id="UserNamefloatingInput"
+               placeholder="Username">
+        <label for="usernamefloatingInput">
+          <i class="pi pi-envelope"></i>
+          Username
+        </label>
+      </div>
+      <div class="form-floating mb-3">
+        <input (keydown)="handleEmailInput($event)"
+               #emailInput
+               formControlName="email"
+               [ngClass]="{'withError': email?.errors}"
+               class="email-username-input form-control"
+               id="EmailfloatingInput"
+               placeholder="Email">
+        <label for="emailfloatingInput">
+          <i class="pi pi-user"></i>
+          name@example.com
+        </label>
+      </div>
+      <div class="form-floating mb-3">
+        <show-hide-password>
+          <input (keydown)="handlePasswordInput($event)"
+                 formControlName="password"
+                 #passwordInput
+                 [ngClass]="{'withError': password?.errors}"
+                 type="password"
+                 class="password-input form-control"
+                 id="PasswordfloatingInput"
+                 placeholder="Password">
+        </show-hide-password>
+        <label for="passwordfloatingInput"></label>
+      </div>
+      <button type="submit" #signUpBtn (click)="showErrorMessage()" class="signup-btn btn btn-primary">Sign In</button>
+    </form>
+  </div>
+
+  <div class="signup">
+
+  </div>
+</div>
+
+<nav class="open-register-modal nav">
+  <button (click)="openRegisterModal()" class="open-register-modal btn btn-primary p-3">Sign Up</button>
+</nav>
+<div *ngIf="withError" class="error-message bg-danger text-white">
+  Email or password not valid
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Dashboard</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <div class="vertical-nav bg-white" id="sidebar">
+        <div class="py-4 px-3 mb-4 bg-light">
+          <div class="media d-flex align-items-center">
+            <img src="../../../../../assets/logo-social.png" alt="..." width="100" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+          </div>
+        </div>
+
+        <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
+
+        <ul class="nav flex-column bg-white mb-0">
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark font-italic bg-light">
+              <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+              Company Reference & Metadata
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark font-italic">
+              <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+              Economic Data
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark font-italic">
+              <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+              Realtime Prices
+            </a>
+          </li>
+        </ul>
+
+        <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Data</p>
+
+        <ul class="nav flex-column bg-white mb-0">
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark font-italic">
+              <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>
+              Area charts
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark font-italic">
+              <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>
+              Bar charts
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark font-italic">
+              <i class="fa fa-pie-chart mr-3 text-primary fa-fw"></i>
+              Pie charts
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark font-italic">
+              <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>
+              Line charts
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="show-left-menu-btn btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+  Show user navbar
+</button>
