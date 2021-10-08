@@ -5,6 +5,7 @@ import {RegisterComponent} from "../../register/register/register.component";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faEyeSlash, faEnvelope} from "@fortawesome/free-solid-svg-icons";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -17,12 +18,12 @@ export class LoginComponent implements OnInit {
   @ViewChild('passwordInput', {static: false}) passwordInput!: ElementRef;
   @ViewChild('signUpBtn', {static: false}) signUpBtn!: ElementRef;
   loginForm!: FormGroup;
-  withError = false;
 
   constructor(private readonly auth: AuthService,
               private readonly dialog: MatDialog,
               private readonly fb: FormBuilder,
-              private library: FaIconLibrary,) {
+              private readonly library: FaIconLibrary,
+              private readonly _snackBar: MatSnackBar) {
     library.addIcons(faEyeSlash, faEnvelope);
   }
 
@@ -87,9 +88,9 @@ export class LoginComponent implements OnInit {
 
   showErrorMessage() {
     if (this.email?.errors || this.password?.errors) {
-      this.withError = true;
+     this._snackBar.open('Wrong email or password');
       setTimeout(() => {
-        this.withError = false;
+        this._snackBar.dismiss();
       }, 2000);
     }
   }

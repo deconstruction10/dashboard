@@ -59,13 +59,9 @@
           </label>
         </div>
         <div class="signup">
-          <button type="submit" class="signup-btn btn btn-primary">Sign Up</button>
+          <button type="submit" #signUpBtn (click)="showErrorMessage()" type="submit" class="signup-btn btn btn-primary">Sign Up</button>
         </div>
       </div>
     </div>
   </div>
 </form>
-
-<nav class="nav">
-  <button (click)="openRegisterModal()" class="btn btn-primary">Sign In</button>
-</nav>

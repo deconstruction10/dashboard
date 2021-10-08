@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginComponent} from "../../login/login/login.component";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faEyeSlash, faEnvelopeOpen} from "@fortawesome/free-solid-svg-icons";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
   faEnvelopeOpen = faEnvelopeOpen;
   constructor(private dialog: MatDialog,
               private library: FaIconLibrary,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private readonly _snackBar: MatSnackBar) {
     library.addIcons(faEyeSlash, this.faEnvelopeOpen)
   }
 
@@ -94,10 +96,10 @@ export class RegisterComponent implements OnInit {
   }
 
   showErrorMessage() {
-    if (this.email?.errors || this.password?.errors) {
-      this.withError = true;
+    if (this.email?.errors || this.password?.errors || this.terms?.errors) {
+      this._snackBar.open('Wrong email or password');
       setTimeout(() => {
-        this.withError = false;
+        this._snackBar.dismiss();
       }, 2000);
     }
   }
