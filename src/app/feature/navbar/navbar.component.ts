@@ -1,8 +1,5 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {RegisterComponent} from "../../modules/general/register/register/register.component";
-import {MatDialog} from "@angular/material/dialog";
-import {LoginComponent} from "../../modules/general/login/login/login.component";
-import {fromEvent} from "rxjs";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {MegaMenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-navbar',
@@ -10,23 +7,29 @@ import {fromEvent} from "rxjs";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  items!: MegaMenuItem[];
   @ViewChild('loginElement', {static: false})  login: ElementRef | undefined;
   @ViewChild('registerElement', {static: false})  register: ElementRef | undefined;
-  constructor(private readonly dialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
+    this.items = [
+      {label: 'Home', icon: 'pi pi-home', routerLink: ['/home/home']},
+      {label: 'Profile', icon: 'pi pi-user', routerLink: ['/profile/profile']},
+      {label: 'Language', icon:'pi pi-lang', items: [
+          [
+            {
 
-  openRegisterDialog() {
-    let dialogRef = this.dialog.open(RegisterComponent, {
-      width: '600px',
-    });
+              items: [{label: 'ua',}, {label: 'Video 1.2', separator: true, routerLink: ['/ua']}]
+            },
+            {
+              items: [{label: 'en'}, {label: 'Video 2.2', separator: true, routerLink: ['/en']}]
+            }
+          ],
+        ],
+      },
+      {label: 'Sign In', icon: 'pi pi-sign-in', routerLink: ['/auth/login']},
+      {label: 'Sign Up', routerLink: ['/auth/register']},
+    ]
   }
-
-  openSignInDialog() {
-    let dialogRef = this.dialog.open(LoginComponent, {
-      width: '500px',
-    });
-  }
-
 }

@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavProfileComponent } from './nav-profile/nav-profile.component';
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatDrawerContainer, MatSidenavModule} from "@angular/material/sidenav";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {ReactiveFormsModule} from "@angular/forms";
-import {MatInputModule} from "@angular/material/input";
-import {PrimeIcons} from "primeng/api";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {MenuModule} from "primeng/menu";
+import {AvatarModule} from "primeng/avatar";
+import {DropdownModule} from "primeng/dropdown";
 
 @NgModule({
   declarations: [
@@ -18,7 +15,10 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MenuModule,
+    AvatarModule,
+    DropdownModule
   ]
 })
 export class NavProfileModule { }

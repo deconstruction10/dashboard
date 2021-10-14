@@ -8,7 +8,6 @@ import { LogoutComponent } from '../modules/general/logout/logout/logout.compone
 import {ShowHidePasswordModule} from "ngx-show-hide-password";
 import {ReactiveFormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [

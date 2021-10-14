@@ -1,6 +1,5 @@
-.user-navbar-profile-icon:hover {
+.user-navbar-profile-icon {
   cursor: pointer;
-  line-height: 15px;
 }
 
 .user-profile-nav {
@@ -8,18 +7,18 @@
   height: 100%;
 }
 
+.navbar-expand-lg {
+  border-radius: 25px;
+}
+
 .user-navbar-profile-logout-icon {
   cursor: pointer;
 }
 
-fa-icon {
-  line-height: 2px;
-}
-
-.logout-text:hover {
-  text-decoration: dashed;
-}
-
 .navbar-brand {
+  cursor: pointer;
+}
+
+.account-settings:hover {
   cursor: pointer;
 }

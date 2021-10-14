@@ -1,7 +1,10 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {RouterModule} from "@angular/router";
+import {MegaMenuModule} from "primeng/megamenu";
+import {MenubarModule} from "primeng/menubar";
+import {MenuItemContent} from "primeng/menu";
 
 @NgModule({
     declarations: [NavbarComponent],
@@ -10,7 +13,9 @@ import {RouterModule} from "@angular/router";
     ],
     imports: [
         CommonModule,
-        RouterModule.forRoot([])
+        RouterModule.forRoot([]),
+        MegaMenuModule,
+        MenubarModule,
     ]
 })
 export class FeatureModule { }

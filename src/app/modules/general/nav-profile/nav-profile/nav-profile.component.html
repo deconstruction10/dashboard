@@ -15,14 +15,25 @@
           <a class="nav-link" href="">Realtime Prices</a>
         </li>
       </ul>
-      <label class="user-navbar-profile-icon">
-        <fa-icon class="m-4 col-md-4" [icon]="faUserAstronaut"></fa-icon>
-      </label>
-      <label class="user-navbar-profile-logout-icon">
+      <div class="user-navbar-profile-icon">
+        <p-avatar label="V" styleClass="p-mr-2"
+                  size="middle"
+                  [style]="{'background-color':'#2196F3',
+                  'color': '#ffffff'}"
+                  shape="circle">
+        </p-avatar>
+      </div>
+      <div class="account-settings">
+        <p class="p-4 p-button-text">Account</p>
+        <i (click)="showUserMenu()" class="pi pi-chevron-down">
+          <p-menu *ngIf="showMenu" [model]="items"></p-menu>
+        </i>
+      </div>
+      <div class="user-navbar-profile-logout-icon">
         <i class="col-md-2 pi pi-sign-out">
           <span class="m-2 lead">Logout</span>
         </i>
-      </label>
+      </div>
     </div>
   </nav>
 </div>

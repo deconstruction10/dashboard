@@ -1,17 +1,20 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginComponent} from "../../login/login/login.component";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faEyeSlash, faEnvelopeOpen} from "@fortawesome/free-solid-svg-icons";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthorizationService} from "../../../../auth/authorization.service";
+import {fromEvent} from "rxjs";
+import {map, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   @ViewChild('usernameInput', {static: false}) usernameInput!: ElementRef;
   @ViewChild('emailInput', {static: false}) emailInput!: ElementRef;
   @ViewChild('passwordInput', {static: false}) passwordInput!: ElementRef;
@@ -24,7 +27,8 @@ export class RegisterComponent implements OnInit {
   constructor(private dialog: MatDialog,
               private library: FaIconLibrary,
               private fb: FormBuilder,
-              private readonly _snackBar: MatSnackBar) {
+              private readonly _snackBar: MatSnackBar,
+              private readonly auth: AuthorizationService) {
     library.addIcons(faEyeSlash, this.faEnvelopeOpen)
   }
 
@@ -113,6 +117,15 @@ export class RegisterComponent implements OnInit {
     const username = this.registerForm.get('username')?.value;
     const email = this.registerForm.get('email')?.value;
     const password = this.registerForm.get('password')?.value;
+    const signup =  fromEvent(this.signUpBtn.nativeElement, 'click')
+    this.auth.registerUser()
+      .pipe(
+        map(value => value),
+        tap(n => n)
+      ).subscribe(value => console.log(value));
   }
 
+  ngOnDestroy() {
+
+  }
 }

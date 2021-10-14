@@ -1,11 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {AuthService} from "@auth0/auth0-angular";
 import {MatDialog} from "@angular/material/dialog";
-import {RegisterComponent} from "../../register/register/register.component";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faEyeSlash, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthorizationService} from "../../../../auth/authorization.service";
+import {fromEvent} from "rxjs";
+import {map, tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('signUpBtn', {static: false}) signUpBtn!: ElementRef;
   loginForm!: FormGroup;
 
-  constructor(private readonly auth: AuthService,
+  constructor(private readonly auth: AuthorizationService,
               private readonly dialog: MatDialog,
               private readonly fb: FormBuilder,
               private readonly library: FaIconLibrary,
@@ -95,15 +96,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
-  openRegisterModal() {
-    this.dialog.closeAll();
-    this.dialog.open(RegisterComponent);
-  }
-
   login() {
     const username = this.loginForm.get('username')?.value;
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
+    fromEvent(this.signUpBtn.nativeElement, 'click')
+      this.auth.loginUser()
+      .pipe(
+        map(value => value),
+        tap(n => n)
+      )
   }
 }
