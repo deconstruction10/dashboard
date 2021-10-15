@@ -4,10 +4,14 @@ import { ProfileComponent } from './profile/profile.component';
 import {NavProfileModule} from "../nav-profile/nav-profile.module";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {ProfileRoutingModule} from "./profile-routing.module";
+import {ProfileGuard} from "./profile.guard";
+import {MessageModule} from "primeng/message";
+import {MessagesModule} from "primeng/messages";
 
 
 
 @NgModule({
+  providers: [ProfileGuard],
   declarations: [
     ProfileComponent
   ],
@@ -15,7 +19,9 @@ import {ProfileRoutingModule} from "./profile-routing.module";
     CommonModule,
     NavProfileModule,
     MatToolbarModule,
-    ProfileRoutingModule
+    ProfileRoutingModule,
+    MessageModule,
+    MessagesModule
   ]
 })
 export class ProfileModule { }

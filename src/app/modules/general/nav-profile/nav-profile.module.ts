@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavProfileComponent } from './nav-profile/nav-profile.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MenuModule} from "primeng/menu";
 import {AvatarModule} from "primeng/avatar";
 import {DropdownModule} from "primeng/dropdown";
+import {MegaMenuModule} from "primeng/megamenu";
+import {SelectButtonModule} from "primeng/selectbutton";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {DropdownModule} from "primeng/dropdown";
     FontAwesomeModule,
     MenuModule,
     AvatarModule,
-    DropdownModule
-  ]
+    DropdownModule,
+    SelectButtonModule
+  ],
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
 export class NavProfileModule { }

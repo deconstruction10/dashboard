@@ -18,4 +18,8 @@ export class AuthorizationService {
   loginUser(): Observable<void> {
     return this.auth0.loginWithRedirect({screen_hint: ''});
   };
+
+  checkProfileRoute() {
+    return this.auth0.isAuthenticated$;
+  }
 }

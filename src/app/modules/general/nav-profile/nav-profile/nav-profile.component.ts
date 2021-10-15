@@ -13,16 +13,28 @@ import {map, takeWhile} from "rxjs/operators";
 export class NavProfileComponent implements OnInit {
   showMenu = false;
   items!: MenuItem[];
-  selectedItem!: SelectItem[];
+  countries: any;
   constructor(private readonly library: FaIconLibrary) {
     this.library.addIcons(faUserAstronaut);
+    this.countries = [
+      {name: 'Australia', code: 'AU'},
+      {name: 'Brazil', code: 'BR'},
+      {name: 'China', code: 'CN'},
+      {name: 'Egypt', code: 'EG'},
+      {name: 'France', code: 'FR'},
+      {name: 'Germany', code: 'DE'},
+      {name: 'India', code: 'IN'},
+      {name: 'Japan', code: 'JP'},
+      {name: 'Spain', code: 'ES'},
+      {name: 'United States', code: 'US'}
+    ];
   }
 
   ngOnInit(): void {
     this.items = [{
       label: 'Profile',
       items: [
-        {label: 'Settings', icon: 'pi pi-bars'},
+        {label: 'Settings', icon: 'pi pi-bars', },
         {label: 'Your Data', icon: 'pi pi-chart-bar'},
         {label: 'Log out', icon: 'pi pi-sign-out'}
       ]

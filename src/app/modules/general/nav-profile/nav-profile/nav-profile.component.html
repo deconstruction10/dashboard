@@ -26,7 +26,7 @@
       <div class="account-settings">
         <p class="p-4 p-button-text">Account</p>
         <i (click)="showUserMenu()" class="pi pi-chevron-down">
-          <p-menu *ngIf="showMenu" [model]="items"></p-menu>
+          <p-menu [model]="items" [showClear]="true" optionLabel="name" placeholder="Select a Country"></p-menu>
         </i>
       </div>
       <div class="user-navbar-profile-logout-icon">
