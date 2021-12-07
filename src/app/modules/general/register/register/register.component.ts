@@ -5,7 +5,7 @@ import {LoginComponent} from "../../login/login/login.component";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faEyeSlash, faEnvelopeOpen} from "@fortawesome/free-solid-svg-icons";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {AuthorizationService} from "../../../../auth/authorization.service";
+import {AuthenticationService} from "../../../../auth/authentication.service";
 import {fromEvent} from "rxjs";
 import {map, tap} from "rxjs/operators";
 
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
               private library: FaIconLibrary,
               private fb: FormBuilder,
               private readonly _snackBar: MatSnackBar,
-              private readonly auth: AuthorizationService) {
+              private readonly auth: AuthenticationService) {
     library.addIcons(faEyeSlash, this.faEnvelopeOpen)
   }
 
@@ -118,11 +118,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     const email = this.registerForm.get('email')?.value;
     const password = this.registerForm.get('password')?.value;
     const signup =  fromEvent(this.signUpBtn.nativeElement, 'click')
-    this.auth.registerUser()
-      .pipe(
-        map(value => value),
-        tap(n => n)
-      ).subscribe(value => console.log(value));
+    // this.auth.registerUser()
+    //   .pipe(
+    //     map(value => value),
+    //     tap(n => n)
+    //   ).subscribe(value => console.log(value));
   }
 
   ngOnDestroy() {

@@ -39,7 +39,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+
 import {CommonModule} from "@angular/common";
+import {PasswordModule} from "primeng/password";
+import {DividerModule} from "primeng/divider";
+import {InputTextModule} from "primeng/inputtext";
+import { MessagesModule } from 'primeng/messages';
+import {ButtonModule} from "primeng/button";
+import {InputMaskModule} from "primeng/inputmask";
+import {CaptchaModule} from "primeng/captcha";
+import {ToastModule} from "primeng/toast";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [],
@@ -117,6 +127,15 @@ import {CommonModule} from "@angular/common";
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
+        PasswordModule,
+        DividerModule,
+        InputTextModule,
+        MessagesModule,
+        ButtonModule,
+        InputMaskModule,
+        CaptchaModule,
+        ToastModule,
+        CardModule,
     ]
 })
 export class SharedModule { }

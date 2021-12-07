@@ -8,8 +8,6 @@ import {ProfileGuard} from "./profile.guard";
 import {MessageModule} from "primeng/message";
 import {MessagesModule} from "primeng/messages";
 
-
-
 @NgModule({
   providers: [ProfileGuard],
   declarations: [
@@ -21,7 +19,7 @@ import {MessagesModule} from "primeng/messages";
     MatToolbarModule,
     ProfileRoutingModule,
     MessageModule,
-    MessagesModule
+    MessagesModule,
   ]
 })
 export class ProfileModule { }

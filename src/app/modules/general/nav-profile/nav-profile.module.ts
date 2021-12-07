@@ -7,6 +7,8 @@ import {AvatarModule} from "primeng/avatar";
 import {DropdownModule} from "primeng/dropdown";
 import {MegaMenuModule} from "primeng/megamenu";
 import {SelectButtonModule} from "primeng/selectbutton";
+import {SkeletonModule} from "primeng/skeleton";
+import {TabMenuModule} from "primeng/tabmenu";
 
 @NgModule({
   declarations: [
@@ -21,8 +23,9 @@ import {SelectButtonModule} from "primeng/selectbutton";
     MenuModule,
     AvatarModule,
     DropdownModule,
-    SelectButtonModule
+    SelectButtonModule,
+    TabMenuModule
   ],
-  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
+  schemas: []
 })
 export class NavProfileModule { }

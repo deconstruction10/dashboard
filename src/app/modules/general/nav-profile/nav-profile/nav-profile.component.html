@@ -1,5 +1,7 @@
 <div class="container">
+
   <nav class="navbar navbar-expand-lg navbar-light bg-dark bg-opacity-10">
+<!--    <p class="bg-gradient bg-opacity-10" *ngIf="getUser() | async as user" shape="rectangle">Welcome back {{user.name}}</p>-->
     <div class="container">
       <a class="navbar-brand lead">
         User Profile
@@ -26,7 +28,7 @@
       <div class="account-settings">
         <p class="p-4 p-button-text">Account</p>
         <i (click)="showUserMenu()" class="pi pi-chevron-down">
-          <p-menu [model]="items" [showClear]="true" optionLabel="name" placeholder="Select a Country"></p-menu>
+          <p-menu *ngIf="showMenu" [model]="items"  optionLabel="name" placeholder="Select a Country"></p-menu>
         </i>
       </div>
       <div class="user-navbar-profile-logout-icon">
@@ -37,3 +39,4 @@
     </div>
   </nav>
 </div>
+

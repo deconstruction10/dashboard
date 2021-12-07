@@ -2,8 +2,10 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {faUserAstronaut} from "@fortawesome/free-solid-svg-icons";
 import {MenuItem, SelectItem} from "primeng/api";
-import {fromEvent, iif, of, Subject, Subscription} from "rxjs";
+import {fromEvent, iif, interval, of, Subject, Subscription} from "rxjs";
 import {map, takeWhile} from "rxjs/operators";
+import {AuthenticationService} from "../../../../auth/authentication.service";
+import {HttpEventType} from "@angular/common/http";
 
 @Component({
   selector: 'app-nav-profile',
@@ -13,28 +15,16 @@ import {map, takeWhile} from "rxjs/operators";
 export class NavProfileComponent implements OnInit {
   showMenu = false;
   items!: MenuItem[];
-  countries: any;
-  constructor(private readonly library: FaIconLibrary) {
+  user!: HttpEventType.User;
+  constructor(private readonly library: FaIconLibrary, private readonly auth: AuthenticationService) {
     this.library.addIcons(faUserAstronaut);
-    this.countries = [
-      {name: 'Australia', code: 'AU'},
-      {name: 'Brazil', code: 'BR'},
-      {name: 'China', code: 'CN'},
-      {name: 'Egypt', code: 'EG'},
-      {name: 'France', code: 'FR'},
-      {name: 'Germany', code: 'DE'},
-      {name: 'India', code: 'IN'},
-      {name: 'Japan', code: 'JP'},
-      {name: 'Spain', code: 'ES'},
-      {name: 'United States', code: 'US'}
-    ];
   }
 
   ngOnInit(): void {
     this.items = [{
       label: 'Profile',
       items: [
-        {label: 'Settings', icon: 'pi pi-bars', },
+        {label: 'Settings', icon: 'pi pi-bars'},
         {label: 'Your Data', icon: 'pi pi-chart-bar'},
         {label: 'Log out', icon: 'pi pi-sign-out'}
       ]
@@ -44,4 +34,8 @@ export class NavProfileComponent implements OnInit {
   showUserMenu() {
     this.showMenu = !this.showMenu;
   }
+
+  // getUser() {
+  //  return this.auth.getUser();
+  // }
 }

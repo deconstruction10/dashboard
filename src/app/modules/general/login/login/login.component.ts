@@ -1,12 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
-import {faEyeSlash, faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {AuthorizationService} from "../../../../auth/authorization.service";
+import {AuthenticationService} from "../../../../auth/authentication.service";
 import {fromEvent} from "rxjs";
-import {map, tap} from "rxjs/operators";
+import {Token} from "../../../../auth/token";
 
 @Component({
   selector: 'app-login',
@@ -14,18 +11,20 @@ import {map, tap} from "rxjs/operators";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  mediumRegex: string | undefined;
+  mobileValue: string | undefined;
+  loginForm!: FormGroup;
   @ViewChild('usernameInput', {static: false}) usernameInput!: ElementRef;
   @ViewChild('emailInput', {static: false}) emailInput!: ElementRef;
   @ViewChild('passwordInput', {static: false}) passwordInput!: ElementRef;
-  @ViewChild('signUpBtn', {static: false}) signUpBtn!: ElementRef;
-  loginForm!: FormGroup;
+  @ViewChild('firstnameInput', {static: false}) firstnameInput!: ElementRef;
+  @ViewChild('lastnameInput', {static: false}) lastnameInput!: ElementRef;
+  @ViewChild('mobileInput', {static: false}) mobileInput!: ElementRef;
+  @ViewChild('signInBtn', {static: false}) signUpBtn!: ElementRef;
 
-  constructor(private readonly auth: AuthorizationService,
-              private readonly dialog: MatDialog,
+  constructor(private readonly auth: AuthenticationService,
               private readonly fb: FormBuilder,
-              private readonly library: FaIconLibrary,
-              private readonly _snackBar: MatSnackBar) {
-    library.addIcons(faEyeSlash, faEnvelope);
+              ) {
   }
 
   ngOnInit(): void {
@@ -52,27 +51,31 @@ export class LoginComponent implements OnInit {
                 Validators.minLength(6),
                 Validators.required
               ]
-            ))
+            )),
+        firstname: new FormControl('',
+          Validators.compose(
+            [
+              Validators.minLength(12),
+              Validators.required
+            ]
+          )),
+        lastname: new FormControl('',
+          Validators.compose(
+            [
+              Validators.minLength(12),
+              Validators.required
+            ],
+          )),
+        mobile: new FormControl('',
+          Validators.compose(
+            [
+              Validators.minLength(10),
+              Validators.pattern('/^(\\+\\d{1,3}[- ]?)?\\d{10}$/'),
+              Validators.required
+            ]
+          ))
       }
     )
-  }
-
-  handleUserNameInput(event: KeyboardEvent) {
-    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-      this.usernameInput.nativeElement.focus();
-    }
-  }
-
-  handleEmailInput(event: KeyboardEvent) {
-    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-      this.passwordInput.nativeElement.focus();
-    }
-  }
-
-  handlePasswordInput(event: KeyboardEvent) {
-    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-      this.signUpBtn.nativeElement.focus();
-    }
   }
 
   get email() {
@@ -87,13 +90,17 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  showErrorMessage() {
-    if (this.email?.errors || this.password?.errors) {
-     this._snackBar.open('Wrong email or password');
-      setTimeout(() => {
-        this._snackBar.dismiss();
-      }, 2000);
-    }
+  get firstname() {
+    return this.loginForm.get('firstname');
+  }
+
+  get lastname() {
+    return this.loginForm.get('lastname');
+  }
+
+  get mobile() {
+    this.mobile?.valid.valueOf();
+    return this.loginForm.get('mobile');
   }
 
   login() {
@@ -101,10 +108,10 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
     fromEvent(this.signUpBtn.nativeElement, 'click')
-      this.auth.loginUser()
-      .pipe(
-        map(value => value),
-        tap(n => n)
-      )
+
+  }
+
+  showResponse($event: any) {
+
   }
 }

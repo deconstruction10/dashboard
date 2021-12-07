@@ -19,7 +19,6 @@ export class NavbarComponent implements OnInit {
       {label: 'Language', icon:'pi pi-lang', items: [
           [
             {
-
               items: [{label: 'ua',}, {label: 'Video 1.2', separator: true, routerLink: ['/ua']}]
             },
             {
