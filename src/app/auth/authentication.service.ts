@@ -27,8 +27,12 @@ export class AuthenticationService {
     private readonly auth: AuthService,
     private token: TokenStorageService) {}
 
-  login(user: { password: any; email: any; username: any }): Observable<void> {
-    return this.auth.loginWithRedirect({login_hint: '', display: 'page'})
+  login(user: User): Observable<Token> {
+    return this.http.post<Token>(LOGIN_AUTH_API, user, httpOptions)
+      .pipe(
+        map((response:Token) =>  response),
+        tap((n:Token) => this.router.navigate(['/auth/profile'], {relativeTo: this.route}))
+      )
   }
 
   register(user: User): Observable<User> {

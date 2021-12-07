@@ -1,9 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {AuthenticationService} from "../../../../auth/authentication.service";
 import {fromEvent} from "rxjs";
 import {Token} from "../../../../auth/token";
+import {AuthService} from "@auth0/auth0-angular";
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('mobileInput', {static: false}) mobileInput!: ElementRef;
   @ViewChild('signInBtn', {static: false}) signUpBtn!: ElementRef;
 
-  constructor(private readonly auth: AuthenticationService,
+  constructor(private readonly auth: AuthService,
               private readonly fb: FormBuilder,
               ) {
   }
@@ -108,6 +107,7 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
     fromEvent(this.signUpBtn.nativeElement, 'click')
+    this.auth.loginWithRedirect();
 
   }
 
