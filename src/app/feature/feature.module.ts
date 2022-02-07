@@ -5,17 +5,25 @@ import {RouterModule} from "@angular/router";
 import {MegaMenuModule} from "primeng/megamenu";
 import {MenubarModule} from "primeng/menubar";
 import {MenuItemContent} from "primeng/menu";
+import {ButtonModule} from "primeng/button";
+import {HomeModule} from "../modules/general/home/home.module";
+import {ProfileModule} from "../modules/general/profile/profile.module";
+import {SettingsModule} from "../modules/general/settings/settings.module";
 
 @NgModule({
     declarations: [NavbarComponent],
     exports: [
         NavbarComponent
     ],
-    imports: [
-        CommonModule,
-        RouterModule.forRoot([]),
-        MegaMenuModule,
-        MenubarModule,
-    ]
+  imports: [
+    CommonModule,
+    RouterModule.forRoot([]),
+    MegaMenuModule,
+    MenubarModule,
+    ButtonModule,
+    HomeModule,
+    ProfileModule,
+    SettingsModule,
+  ]
 })
 export class FeatureModule { }

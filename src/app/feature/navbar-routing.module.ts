@@ -2,33 +2,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Routes} from "@angular/router";
 import {RouterModule} from "@angular/router";
-import {AuthenticationModule} from "../auth/authentication.module";
-import {LoginComponent} from "../modules/general/login/login/login.component";
-import {RegisterComponent} from "../modules/general/register/register/register.component";
 import {ProfileComponent} from "../modules/general/profile/profile/profile.component";
 import {ProfileModule} from "../modules/general/profile/profile.module";
-import {LoginModule} from "../modules/general/login/login.module";
-import {RegisterModule} from "../modules/general/register/register.module";
 import {HomeComponent} from "../modules/general/home/home/home.component";
 import {HomeModule} from "../modules/general/home/home.module";
+import {ProfileGuard} from "../modules/general/profile/profile.guard";
+import {SettingsComponent} from "../modules/general/settings/settings/settings.component";
+import {SettingsModule} from "../modules/general/settings/settings.module";
+import {DataModule} from "../modules/general/data/data.module";
 
 const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {
     path: 'home', children: [
-      {path: 'home', component: HomeComponent, loadChildren: () => import('../modules/general/home/home.module').then(m => HomeModule)}
+      {path: '', component: HomeComponent, loadChildren: () => import('../modules/general/home/home.module').then(m => HomeModule)},
+      {path: '', component: SettingsComponent, loadChildren: () => import('../modules/general/settings/settings.module').then(m => SettingsModule)},
     ]
   },
   {
     path: 'profile', children: [
-      {path: 'profile', component: ProfileComponent, loadChildren: () => import('../modules/general/profile/profile.module').then(m => ProfileModule)},
+      {path: '', component: ProfileComponent, canActivate: [ProfileGuard], loadChildren: () => import('../modules/general/profile/profile.module').then(m => ProfileModule)},
+      {path: 'data', loadChildren: () => import('../modules/general/data/data.module').then(m => DataModule)}
     ]
   },
-  {
-    path: 'auth', children: [
-      {path: 'login', component: LoginComponent, loadChildren: () => import('../auth/authentication.module').then(m => LoginModule)},
-      {path: 'register', component: RegisterComponent, loadChildren: () => import('../auth/authentication.module').then(m => RegisterModule)},
-    ]
-  }
 ];
 
 @NgModule({

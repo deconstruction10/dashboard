@@ -3,9 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {ProfileComponent} from "./profile/profile.component";
 import {ProfileGuard} from "./profile.guard";
 
-
 const routes: Routes = [
-  { path: '', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard]},
 ];
 
 @NgModule({

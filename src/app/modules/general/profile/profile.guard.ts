@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {iif, Observable, of} from 'rxjs';
+import {iif, mergeMap, Observable, of} from 'rxjs';
 import {AuthenticationService} from "../../../auth/authentication.service";
-import {switchMap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +13,17 @@ export class ProfileGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true
     // return this.auth.checkProfileRoute()
     //   .pipe(
-    //     switchMap((result: boolean) => {
-    //       if (result === true) {
-    //         return of(result)
+    //     mergeMap((result: boolean) => {
+    //       if (result) {
+    //         return of(true)
     //       } else {
-    //         return of(this.router.createUrlTree(['auth/login']))
+    //         this.auth.redirectLoginRoute();
+    //         return of(false);
     //       }
-    //     }),
+    //     })
     //   )
+    return  true;
   }
 }

@@ -1,0 +1,62 @@
+<p>{{indicator}}</p>
+
+<div class="container">
+  <div class="row mt-3">
+    <div class="input-group mb-3 w-50">
+      <label class="input-group-text" for="inputGroupSelect01">Select SMA Interval</label>
+      <select class="form-select" id="inputGroupSelect">
+        <option value="0">5min</option>
+        <option>15min</option>
+        <option>30min</option>
+        <option>60min</option>
+        <option>daily</option>
+        <option>weekly</option>
+        <option>monthly</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row mt-3">
+    <div class="input-group mb-3 w-50 h-100">
+      <label class="input-group-text" for="inputGroupSelect01">Select SMA Series Type</label>
+      <select class="form-select" id="inputGroupSelect01">
+        <option [selected]>Open</option>
+        <option>Close</option>
+        <option>High</option>
+        <option>Low</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row mt-3">
+    <div class="input mb-3 w-50">
+      <input class="input w-75" placeholder="Enter Time Period">
+    </div>
+  </div>
+</div>
+<fusioncharts
+  [type]="type"
+  [width]="width"
+  [height]="height"
+  [dataSource]="dataSource"
+>
+</fusioncharts>
+
+<p-table [columns]="cols" [value]="items" responsiveLayout="scroll">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        {{rowData[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

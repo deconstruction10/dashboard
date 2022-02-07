@@ -1,19 +1,9 @@
 import { Injectable } from '@angular/core';
 import {AuthService} from "@auth0/auth0-angular";
-import {Observable} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {map, mergeMap, Observable, of, tap} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "./user";
-import {Token} from "./token";
-import {TokenStorageService} from "./token-storage.service";
-import {map, tap} from "rxjs/operators";
-
-const LOGIN_AUTH_API = 'http://localhost:3000/auth/login';
-const REGISTER_AUTH_API = 'http://localhost:3000/auth/register';
-const CONFIRM_PWD_API = 'localhost:3000/auth/confirm-password';
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -24,22 +14,33 @@ export class AuthenticationService {
     private readonly http: HttpClient,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
-    private readonly auth: AuthService,
-    private token: TokenStorageService) {}
+    private readonly auth: AuthService
+  ) {}
 
-  login(user: User): Observable<Token> {
-    return this.http.post<Token>(LOGIN_AUTH_API, user, httpOptions)
+  checkProfileRoute(): Observable<boolean> {
+    return this.auth.isAuthenticated$;
+  }
+
+  redirectLoginRoute(): Observable<void> {
+    return this.auth.loginWithRedirect();
+  }
+
+  getUser() {
+    return this.auth.user$
       .pipe(
-        map((response:Token) =>  response),
-        tap((n:Token) => this.router.navigate(['/auth/profile'], {relativeTo: this.route}))
+        map(value => value)
       )
   }
 
-  register(user: User): Observable<User> {
-    return this.http.post<User>(REGISTER_AUTH_API, user, httpOptions)
-      .pipe(
-        map((response: User) => response),
-        tap((n:User) => this.router.navigate(['/auth/login'], {relativeTo: this.route})),
-      );
+  logout() {
+    this.auth.logout();
+  }
+
+async register() {
+  return this.auth.user$
+    .pipe(
+      mergeMap((async (value) => value)),
+      tap((value: any) => value)
+    );
   };
 }

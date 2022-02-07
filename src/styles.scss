@@ -9,6 +9,7 @@
 //@include mat.core();
 //$my-primary: mat.define-palette(mat.$indigo-palette);
 //$dark-theme: mat.define-dark-theme(mat.$yellow-palette);
-
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

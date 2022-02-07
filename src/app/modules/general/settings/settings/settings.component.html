@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="page-title">
+    <h2 class="account-header">Account</h2>
+    <div class="preferences">Update your profile and set your account preferences.</div>
+  </div>
+</div>
+
+<div class="container-fluid shadow">
+  <nav class="navbar navbar-light bg-light">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a routerLink="general" class="nav-link active" aria-current="page">General</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="profile" class="nav-link">Account</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="settings" class="nav-link">Preferences</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="delete" class="nav-link">Delete account</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<router-outlet></router-outlet>
