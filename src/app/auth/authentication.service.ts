@@ -55,7 +55,7 @@ export class AuthenticationService {
   login(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
-      .then((result) => {
+      .then((result: { user: any; }) => {
         console.log(result)
         this.zone.run(() => {
           this.router.navigate(['profile']);
