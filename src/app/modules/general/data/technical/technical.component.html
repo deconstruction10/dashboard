@@ -1,41 +1,54 @@
-<p>{{indicator}}</p>
+
+<!--<ng-template>-->
+<!--  <p-message severity="success" text="Message Content" ></p-message>-->
+<!--  <p-message severity="info" text="Message Content"></p-message>-->
+<!--</ng-template>-->
+<div class="container">
+  <div class="row mt-3">
+    <div class="input-group mb-3 w-50 h-100">
+      <label class="input-group-text shadow" for="inputGroupSelect01">Select SMA Symbol Type</label>
+      <select [(ngModel)]="dropdownSymbolItem" class="form-select shadow" id="inputGroupSelect02">
+        <option *ngFor="let dropdownSymbolItem of dropdownSymbolItems" selected [ngValue]="dropdownSymbolItem">{{dropdownSymbolItem}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mt-3">
+    <div class="input-group mb-3 w-50 h-100">
+      <label class="input-group-text shadow" for="inputGroupSelect01">Select SMA Time Period Type</label>
+      <select [(ngModel)]="dropdownTimePeriodItem" class="form-select shadow" id="inputGroupSelect03">
+        <option *ngFor="let dropdownTimePeriodItem of dropdownTimePeriodItems" selected [ngValue]="dropdownTimePeriodItem">{{dropdownTimePeriodItem}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mt-3">
+    <div class="input-group mb-3 w-50 h-100">
+      <label class="input-group-text shadow" for="inputGroupSelect01">Select SMA Series Type</label>
+      <select [(ngModel)]="dropdownSeriesTypeItem" class="form-select shadow" id="inputGroupSelect01">
+        <option *ngFor="let seriesType of dropdownSeriesTypeItems" selected [ngValue]="seriesType">{{seriesType}}</option>
+      </select>
+    </div>
+  </div>
+</div>
 
 <div class="container">
   <div class="row mt-3">
     <div class="input-group mb-3 w-50">
-      <label class="input-group-text" for="inputGroupSelect01">Select SMA Interval</label>
-      <select class="form-select" id="inputGroupSelect">
-        <option value="0">5min</option>
-        <option>15min</option>
-        <option>30min</option>
-        <option>60min</option>
-        <option>daily</option>
-        <option>weekly</option>
-        <option>monthly</option>
+      <label class="input-group-text shadow" for="inputGroupSelect01">Select SMA Interval</label>
+      <select [(ngModel)]="dropdownIntervalItem" class="form-select shadow" id="inputGroupSelect">
+        <option *ngFor="let interval of dropdownIntervalItems" selected>{{interval}}</option>
       </select>
     </div>
   </div>
+  <p-button class="shadow" (onClick)="getSMAProperties()" label="Update"></p-button>
+  <mat-progress-spinner *ngIf="isLoading" color="primary" mode="indeterminate" value="20" diameter="300"></mat-progress-spinner>
 </div>
-<div class="container">
-  <div class="row mt-3">
-    <div class="input-group mb-3 w-50 h-100">
-      <label class="input-group-text" for="inputGroupSelect01">Select SMA Series Type</label>
-      <select class="form-select" id="inputGroupSelect01">
-        <option [selected]>Open</option>
-        <option>Close</option>
-        <option>High</option>
-        <option>Low</option>
-      </select>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row mt-3">
-    <div class="input mb-3 w-50">
-      <input class="input w-75" placeholder="Enter Time Period">
-    </div>
-  </div>
-</div>
+
 <fusioncharts
   [type]="type"
   [width]="width"

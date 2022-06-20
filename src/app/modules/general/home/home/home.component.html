@@ -1,2 +1,78 @@
-<button pButton type="button" label="Click" >11</button>
-<p-button label="Click" >11</p-button>
+<div class="container bg-light economic border-3 shadow">
+  <h2 class="lead h2 text-center text-capitalize bg-primary text-white">Check Economic Indicators</h2>
+  <div class="gdp d-flex justify-content-around">
+    <i class="vr"></i>
+    <span>
+     <i-bs name="graph-up-arrow"
+           width="25"
+           height="240">
+    </i-bs>
+     REAL GDP
+    </span>
+    <i class="vr"></i>
+    <span>
+      <i-bs name="bar-chart-line"
+            width="25"
+            height="240">
+    </i-bs>
+      GDP PER CAPITA
+    </span>
+    <i class="vr"></i>
+    <span>
+      <i-bs name="percent"
+            width="25"
+            height="240">
+      </i-bs>
+      TREASURY YIELD
+    </span>
+  </div>
+</div>
+
+<hr class="bg-danger border-2 border-top border-primary">
+
+<div class="container bg-light technical">
+  <h2 class="lead h2 text-center text-capitalize">Check Technical Indicators</h2>
+  <div class="sma bg-gradient">
+    <h4 class="lead h4 text-capitalize text-white pt-3 p-3" [ngStyle]="{backgroundColor:'var(--blue-500)'}">check simple moving average value by countries</h4>
+
+    <label class="d-flex justify-content-lg-around">
+      <p-tag class="mt-md-3" value="Ukrainian hryvnia" severity="info">
+        <span class="flag-icon flag-icon-ua flag-icon-squared m-1"></span>
+      </p-tag>
+
+      <p-tag class="mt-3" value="Ukrainian hryvnia" severity="info">
+        <span class="flag-icon flag-icon-ua flag-icon-squared m-1"></span>
+      </p-tag>
+
+      <p-tag class="mt-3" value="Ukrainian hryvnia" severity="info">
+        <span class="flag-icon flag-icon-ua flag-icon-squared m-1"></span>
+      </p-tag>
+
+      <p-tag class="mt-3" value="Ukrainian hryvnia" severity="info">
+        <span class="flag-icon flag-icon-ua flag-icon-squared m-1"></span>
+      </p-tag>
+
+      <p-tag class="mt-3 g-3" value="Ukrainian hryvnia" severity="info">
+        <span class="flag-icon flag-icon-ua flag-icon-squared m-1"></span>
+      </p-tag>
+
+      <p-tag class="mt-3 g-3" value="Ukrainian hryvnia" severity="info">
+        <span class="flag-icon flag-icon-ua flag-icon-squared m-1"></span>
+      </p-tag>
+
+      <p-tag class="mt-3 g-3" value="Ukrainian hryvnia" severity="info">
+        <span class="flag-icon flag-icon-ua flag-icon-squared m-1"></span>
+      </p-tag>
+
+      <p-tag class="mt-3 g-3" value="Ukrainian hryvnia" severity="info">
+        <span class="flag-icon flag-icon-ua flag-icon-squared m-1"></span>
+      </p-tag>
+    </label>
+  </div>
+</div>
+
+<ngx-charts-bar-horizontal
+[view]="view"
+>
+
+</ngx-charts-bar-horizontal>

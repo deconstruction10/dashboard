@@ -13,13 +13,13 @@ export class ProfileGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    // return this.auth.checkProfileRoute()
+    // return this.financialAnalyst.checkProfileRoute()
     //   .pipe(
     //     mergeMap((result: boolean) => {
     //       if (result) {
     //         return of(true)
     //       } else {
-    //         this.auth.redirectLoginRoute();
+    //         this.financialAnalyst.redirectLoginRoute();
     //         return of(false);
     //       }
     //     })

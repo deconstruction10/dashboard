@@ -1,0 +1,25 @@
+.input-group-text {
+  background: #6666ff;
+  color: white;
+  font-weight: 600;
+}
+
+.form-select:any-link {
+  color: white;
+  background-color: #fcf9f9;
+  border-color: #8080ff;
+}
+
+mat-progress-spinner {
+  transform: translate(-50%, -50%);
+  z-index: 5;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height:60px;
+  width:60px;
+  margin:0px auto;
+}
+
+

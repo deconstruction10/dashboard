@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {MegaMenuItem} from "primeng/api";
 import {AuthService} from "@auth0/auth0-angular";
+import {AuthenticationService} from "../../auth/authentication.service";
+import {MatDialog} from "@angular/material/dialog";
+import {LoginComponent} from "../../auth/components/login/login.component";
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +12,9 @@ import {AuthService} from "@auth0/auth0-angular";
 })
 export class NavbarComponent implements OnInit {
   items!: MegaMenuItem[];
-  constructor(private readonly auth: AuthService) { }
+  private email: string;
+  private password: string;
+  constructor(private readonly auth: AuthService, private auth1: AuthenticationService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.items = [
@@ -26,7 +31,7 @@ export class NavbarComponent implements OnInit {
           ],
         ],
       },
-      {label: 'Sign In', icon: 'pi pi-sign-in', command: event => this.auth.loginWithRedirect()},
+      {label: 'Sign In', icon: 'pi pi-sign-in', command: event => this.dialog.open(LoginComponent)},
     ]
   }
 }

@@ -15,6 +15,15 @@ import {TooltipModule} from "primeng/tooltip";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {InputNumberModule} from "primeng/inputnumber";
+import {InputTextModule} from "primeng/inputtext";
+import {MatInputModule} from "@angular/material/input";
+import {MessagesModule} from "primeng/messages";
+import {MessageModule} from "primeng/message";
+import {MessageService} from "primeng/api";
+import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
 
@@ -35,7 +44,13 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
     DataRoutingModule,
     TooltipModule,
     TableModule,
-    ButtonModule
-  ]
+    ButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MessageModule,
+    ProgressSpinnerModule,
+    MatProgressSpinnerModule
+  ],
+  providers: [MessageService]
 })
 export class DataModule { }

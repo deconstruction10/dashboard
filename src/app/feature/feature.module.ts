@@ -9,6 +9,7 @@ import {ButtonModule} from "primeng/button";
 import {HomeModule} from "../modules/general/home/home.module";
 import {ProfileModule} from "../modules/general/profile/profile.module";
 import {SettingsModule} from "../modules/general/settings/settings.module";
+import {AuthenticationModule} from "../auth/authentication.module";
 
 @NgModule({
     declarations: [NavbarComponent],
@@ -24,6 +25,7 @@ import {SettingsModule} from "../modules/general/settings/settings.module";
     HomeModule,
     ProfileModule,
     SettingsModule,
+    AuthenticationModule
   ]
 })
 export class FeatureModule { }
